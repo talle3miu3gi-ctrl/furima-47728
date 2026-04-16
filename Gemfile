@@ -61,6 +61,14 @@ group :development do
 
 end
 
+group :development do
+  gem 'rubocop', '1.71.2', require: false
+end
+
+group :production do
+  gem 'pg'
+end
+
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
