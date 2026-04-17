@@ -28,7 +28,7 @@ RSpec.describe User, type: :model do
       it 'emailに@が含まれていないと登録できない' do
         @user.email = 'testtest' # @を含まない文字列
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid") # Deviseのデフォルトはこれが多いです
+        expect(@user.errors.full_messages).to include('Email is invalid') # Deviseのデフォルトはこれが多いです
       end
 
       it 'passwordが空では登録できない' do
