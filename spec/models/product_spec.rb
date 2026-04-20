@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
- before do
+  before do
     @product = FactoryBot.build(:product)
   end
 
@@ -34,58 +34,58 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include("Category can't be blank")
       end
 
-      it  'product_status_idが1では出品できない' do
+      it 'product_status_idが1では出品できない' do
         @product.product_status_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Product status can't be blank")
       end
 
-      it  'shipping_fee_idが1では出品できない' do
+      it 'shipping_fee_idが1では出品できない' do
         @product.shipping_fee_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Shipping fee can't be blank")
       end
 
-      it  'prefecture_idが1では出品できない' do
+      it 'prefecture_idが1では出品できない' do
         @product.prefecture_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Prefecture can't be blank")
       end
 
-      it  'delivery_schedule_idが1では出品できない' do
+      it 'delivery_schedule_idが1では出品できない' do
         @product.delivery_schedule_id = 1
         @product.valid?
         expect(@product.errors.full_messages).to include("Delivery schedule can't be blank")
       end
 
-      it  'priceが空では出品できない' do
+      it 'priceが空では出品できない' do
         @product.price = ''
         @product.valid?
         expect(@product.errors.full_messages).to include("Price can't be blank")
       end
 
-      it  'priceが300円未満では出品できない' do
+      it 'priceが300円未満では出品できない' do
         @product.price = 299
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price is out of setting range")
+        expect(@product.errors.full_messages).to include('Price is out of setting range')
       end
 
-      it  'priceが9999999円を超えても出品できない' do
-        @product.price =  10_000_000
+      it 'priceが9999999円を超えても出品できない' do
+        @product.price = 10_000_000
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price is out of setting range")
+        expect(@product.errors.full_messages).to include('Price is out of setting range')
       end
 
       it 'priceが半角数値でなければ出品できない' do
         @product.price = '３００'
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price is out of setting range")
+        expect(@product.errors.full_messages).to include('Price is out of setting range')
       end
 
       it 'userが紐付いていなければ出品できない' do
         @product.user = nil
         @product.valid?
-        expect(@product.errors.full_messages).to include("User must exist")
+        expect(@product.errors.full_messages).to include('User must exist')
       end
     end
   end
