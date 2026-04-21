@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before do
-    @user=  FactoryBot.build(:user)
+    @user = FactoryBot.build(:user)
   end
 
   describe 'ユーザー新規登録' do
@@ -26,9 +26,9 @@ RSpec.describe User, type: :model do
       end
 
       it 'emailに@が含まれていないと登録できない' do
-        @user.email = 'testtest' 
+        @user.email = 'testtest'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid") 
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
 
       it '重複したemailが存在する場合登録できない' do
@@ -92,7 +92,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("First name can't be blank")
       end
 
-it 'last_nameに半角文字が含まれていると登録できない' do
+      it 'last_nameに半角文字が含まれていると登録できない' do
         @user.last_name = 'yamada'
         @user.valid?
         expect(@user.errors.full_messages).to include('Last name is invalid')
@@ -119,13 +119,13 @@ it 'last_nameに半角文字が含まれていると登録できない' do
       it 'last_name_kanaにカタカナ以外が含まれると登録できない' do
         @user.last_name_kana = '山田'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana は全角カタカナで入力してください")
+        expect(@user.errors.full_messages).to include('Last name kana は全角カタカナで入力してください')
       end
 
       it 'first_name_kanaにカタカナ以外が含まれると登録できない' do
         @user.first_name_kana = 'たろう'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana は全角カタカナで入力してください")
+        expect(@user.errors.full_messages).to include('First name kana は全角カタカナで入力してください')
       end
 
       it 'birth_dateが空では登録できない' do
