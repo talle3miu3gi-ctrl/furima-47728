@@ -1,5 +1,9 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_product, only: [:show, :edit, :update]
+  before_action :contributor_confirmation, only: [:edit, :update]
+  # before_action :redirect_if_sold_out, only: [:edit, :update]
+
   def index
     @products = Product.all.order('created_at DESC')
   end
@@ -19,14 +23,32 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
   end
 
+  def edit
+    
+  end
+
+  def update
+    if @product.update(product_params)
+      redirect_to product_path(@product)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   private
 
   def product_params
     params.require(:product).permit(:name, :image, :description, :price, :category_id, :product_status_id, :shipping_fee_id,
                                     :prefecture_id, :delivery_schedule_id).merge(user_id: current_user.id)
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  def contributor_confirmation
+    redirect_to root_path unless current_user == @product.user
   end
 end
