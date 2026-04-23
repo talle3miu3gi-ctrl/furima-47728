@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def update 
+  def update
     @product = Product.find(params[:id])
     @product.update(product_params)
     if @product.save
@@ -39,9 +39,6 @@ class ProductsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-
-
-
 
   private
 
