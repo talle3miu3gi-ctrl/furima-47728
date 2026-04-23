@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
 
   resources :products 
+  resources :purchaseds, only: [:index, :create]
+  end
 end
