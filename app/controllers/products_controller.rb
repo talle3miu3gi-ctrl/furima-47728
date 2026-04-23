@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_product, only: [:show, :edit, :update]
   before_action :contributor_confirmation, only: [:edit, :update]
-  before_action :redirect_if_sold_out, only: [:edit, :update]
+  # before_action :redirect_if_sold_out, only: [:edit, :update]
 
   def index
     @products = Product.all.order('created_at DESC')
