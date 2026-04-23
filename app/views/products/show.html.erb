@@ -8,12 +8,13 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @product.image ,class:"item-box-img" %>
-        <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <%#<div class="sold-out">
+      <% if @product.purchased.present? %>
+      <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
+      <%end%>
     </div>
+
     <div class="item-price-box">
       <span class="item-price">
         ¥ <%= @product.price%>
@@ -29,12 +30,11 @@
     <%= link_to "商品の編集", edit_product_path(@product), method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= link_to "削除", product_path(@product), data: {turbo_method: :delete}, class:"item-destroy" %>
-      <%else%>
+      
+      <%elseif @product.purchased.nil? %>
 
-
-    <%# 商品が売れていない場合はこちらを表示しましょう %>
-    <%= link_to "購入画面に進む", "#" ,data: { turbo: false }, class:"item-red-btn"%>
-    <%# //商品が売れていない場合はこちらを表示しましょう %>
+      <%= link_to "購入画面に進む", "#" ,data: { turbo: false }, class:"item-red-btn"%>
+   
     <%end%>
    <%end%>
 

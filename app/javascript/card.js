@@ -23,7 +23,6 @@ const pay = () => {
     } else {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
-        // トークンを隠し属性としてフォームに追加
         const tokenObj = `<input value=${token} name='token' type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
@@ -38,6 +37,4 @@ const pay = () => {
 };
 
 window.addEventListener("load", pay);
-window.addEventListener("turbo:render", pay);
-
-
+window.addEventListener("render", pay);
