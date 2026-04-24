@@ -55,11 +55,10 @@ class ProductsController < ApplicationController
   def contributor_confirmation
     redirect_to root_path unless current_user == @product.user
   end
-  
-   def redirect_if_sold_out
-    if @product.purchased.present?
-      redirect_to root_path
-    end
-    end 
 
+  def redirect_if_sold_out
+    return unless @product.purchased.present?
+
+    redirect_to root_path
+  end
 end

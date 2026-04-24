@@ -48,7 +48,7 @@ RSpec.describe PurchasedAddress, type: :model do
         @purchased_address.valid?
         expect(@purchased_address.errors.full_messages).to include("Addresses can't be blank")
       end
-      
+
       it 'phone_numberが空では保存できないこと' do
         @purchased_address.phone_number = ''
         @purchased_address.valid?
@@ -58,19 +58,19 @@ RSpec.describe PurchasedAddress, type: :model do
       it 'phone_numberが9桁以下では保存できないこと' do
         @purchased_address.phone_number = '090123456'
         @purchased_address.valid?
-        expect(@purchased_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchased_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'phone_numberが12桁以上では保存できないこと' do
         @purchased_address.phone_number = '090123456789'
         @purchased_address.valid?
-        expect(@purchased_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchased_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'phone_numberに半角数字以外が含まれている場合は保存できないこと' do
         @purchased_address.phone_number = '090-1234-5678'
         @purchased_address.valid?
-        expect(@purchased_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchased_address.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'user_idが紐付いていないと保存できないこと' do
@@ -78,7 +78,7 @@ RSpec.describe PurchasedAddress, type: :model do
         @purchased_address.valid?
         expect(@purchased_address.errors.full_messages).to include("User can't be blank")
       end
-      
+
       it 'product_idが紐付いていないと保存できないこと' do
         @purchased_address.product_id = nil
         @purchased_address.valid?

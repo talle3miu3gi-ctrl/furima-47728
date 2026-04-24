@@ -27,8 +27,7 @@ end
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
-  
-  
+
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # トランザクションによる掃除を有効にする
