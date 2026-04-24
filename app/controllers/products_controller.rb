@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
-  # before_action :redirect_if_sold_out, only: [:edit, :update]
+  before_action :redirect_if_sold_out, only: [:edit, :update]
 
   def index
     @products = Product.all.order('created_at DESC')
@@ -54,5 +54,11 @@ class ProductsController < ApplicationController
 
   def contributor_confirmation
     redirect_to root_path unless current_user == @product.user
+  end
+
+  def redirect_if_sold_out
+    return unless @product.purchased.present?
+
+    redirect_to root_path
   end
 end
