@@ -1,5 +1,4 @@
 const pay = () => {
-
   const publicKey = gon.public_key;
   const payjp = Payjp(publicKey);
   const elements = payjp.elements();
@@ -37,4 +36,3 @@ const pay = () => {
 };
 
 window.addEventListener("load", pay);
-window.addEventListener("render", pay);

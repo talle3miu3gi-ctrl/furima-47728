@@ -56,9 +56,10 @@ class ProductsController < ApplicationController
     redirect_to root_path unless current_user == @product.user
   end
   
-def redirect_if_sold_out
+   def redirect_if_sold_out
     if @product.purchased.present?
       redirect_to root_path
     end
+    end 
 
 end
