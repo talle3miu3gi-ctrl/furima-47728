@@ -49,6 +49,12 @@ RSpec.describe PurchasedAddress, type: :model do
         expect(@purchased_address.errors.full_messages).to include("Addresses can't be blank")
       end
 
+      it 'zip_codeにハイフンがないと保存できないこと' do
+         @purchased_address.zip_code = '1234567'
+         @purchased_address.valid?
+         expect(@purchased_address.errors.full_messages).to include("Zip code is invalid. Include hyphen(-)")
+      end
+
       it 'phone_numberが空では保存できないこと' do
         @purchased_address.phone_number = ''
         @purchased_address.valid?
