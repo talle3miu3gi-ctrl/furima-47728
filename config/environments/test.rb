@@ -53,6 +53,8 @@ Rails.application.configure do
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
 
+  config.active_record.async_query_executor = nil
+  config.active_record.maintain_test_schema = true
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

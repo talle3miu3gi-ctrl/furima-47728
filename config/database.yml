@@ -17,6 +17,9 @@ test:
   password:
   host: localhost
   database: furima_47728_test
+  prepared_statements: false
+  pool: 10
+  checkout_timeout: 10
 
 production:
   <<: *default
