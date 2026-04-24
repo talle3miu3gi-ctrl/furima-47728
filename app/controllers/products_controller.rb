@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
   end
 
   def create
