@@ -20,6 +20,7 @@ const pay = () => {
     payjp.createToken(numberElement).then(function (response) {
       if (response.error) {
      
+      document.getElementById("charge-form").submit();
       } else {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
@@ -27,8 +28,8 @@ const pay = () => {
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
         
         document.getElementById("charge-form").submit();
-      }  
-
+      }
+      
       numberElement.clear();
       expiryElement.clear();
       cvcElement.clear();
